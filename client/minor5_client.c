@@ -61,13 +61,13 @@ int main(int argc, char *argv[]) {
 	  while(1)
 	  {
 		  unsigned char ruff[256] = {0};
-		  int reads = fread(ruff,1,256,zp);
+		  int reads = fread(ruff,1,255,zp);
 
 		  if(reads > 0)
 		  {
 			  n = write(sockfd, ruff, reads);
 		  }
-		  if(reads < 256)
+		  if(reads < 255)
 		  {
 			  if(feof(zp))
 			  {
@@ -83,7 +83,7 @@ int main(int argc, char *argv[]) {
        n = write(sockfd, argv[2], strlen(buffer));
        FILE *zp = fopen(argv[2],"w");
        int bytesrec;
-       while((bytesrec = read(sockfd,recbuff,256)>0))
+       while((bytesrec = read(sockfd,recbuff,255)>0))
        {
            fwrite(recbuff,1,bytesrec,zp);
        }
